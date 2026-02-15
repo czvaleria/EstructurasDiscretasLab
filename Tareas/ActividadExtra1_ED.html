@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>actividad.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/logo.png" alt=""></p>
+<h1 id="universidad-nacional-auton%C3%B3ma-de-m%C3%A9xico">UNIVERSIDAD NACIONAL AUTONÓMA DE MÉXICO</h1>
+<h2 id="facultad-de-ciencias">FACULTAD DE CIENCIAS</h2>
+<h3 id="trabajo-actividad-extra-1"><strong>Trabajo:</strong> Actividad Extra 1</h3>
+<h3 id="presenta-valeria-camacho-hern%C3%A1ndez---322007273"><strong>Presenta:</strong> Valeria Camacho Hernández - 322007273</h3>
+<h3 id="asignatura-estructuras-discretas-2025-2"><strong>Asignatura:</strong> Estructuras Discretas 2025-2</h3>
+<h3 id="profesor-ulises-rodr%C3%ADguez-dom%C3%ADnguez"><strong>Profesor:</strong> Ulises Rodríguez Domínguez</h3>
+<h3 id="ayudante-irvin-javier-cruz-gonz%C3%A1lez"><strong>Ayudante:</strong> Irvin Javier Cruz González</h3>
+<h3 id="fecha-lunes-24-de-marzo-de-2025"><strong>Fecha:</strong> Lunes 24 de marzo de 2025</h3>
+<hr>
+<h2 id="%C3%ADndice">Índice</h2>
+<ul>
+<li><a href="#universidad-nacional-auton%C3%B3ma-de-m%C3%A9xico">UNIVERSIDAD NACIONAL AUTONÓMA DE MÉXICO</a>
+<ul>
+<li><a href="#facultad-de-ciencias">FACULTAD DE CIENCIAS</a>
+<ul>
+<li><a href="#trabajo-actividad-extra-1"><strong>Trabajo:</strong> Actividad Extra 1</a></li>
+<li><a href="#presenta-valeria-camacho-hern%C3%A1ndez---322007273"><strong>Presenta:</strong> Valeria Camacho Hernández - 322007273</a></li>
+<li><a href="#asignatura-estructuras-discretas-2025-2"><strong>Asignatura:</strong> Estructuras Discretas 2025-2</a></li>
+<li><a href="#profesor-ulises-rodr%C3%ADguez-dom%C3%ADnguez"><strong>Profesor:</strong> Ulises Rodríguez Domínguez</a></li>
+<li><a href="#ayudante-irvin-javier-cruz-gonz%C3%A1lez"><strong>Ayudante:</strong> Irvin Javier Cruz González</a></li>
+<li><a href="#fecha-lunes-24-de-marzo-de-2025"><strong>Fecha:</strong> Lunes 24 de marzo de 2025</a></li>
+</ul>
+</li>
+<li><a href="#%C3%ADndice">Índice</a></li>
+</ul>
+</li>
+<li><a href="#1-introducci%C3%B3n">1. Introducción</a></li>
+<li><a href="#2-qu%C3%A9-es-una-demostraci%C3%B3n">2. ¿Qué es una demostración?</a></li>
+<li><a href="#3-cu%C3%A1l-es-la-diferencia-entre-l%C3%B3gica-proposicional-y-l%C3%B3gica-de-predicados">3. ¿Cuál es la diferencia entre lógica proposicional y lógica de predicados?</a>
+<ul>
+<li><a href="#31-l%C3%B3gica-proposicional">3.1 Lógica proposicional</a>
+<ul>
+<li><a href="#311-funcionamiento">3.1.1 Funcionamiento</a></li>
+<li><a href="#312-operadores-l%C3%B3gicos">3.1.2 Operadores lógicos</a></li>
+<li><a href="#313-propiedades-de-los-operadores">3.1.3 Propiedades de los operadores</a></li>
+<li><a href="#314-ejemplos">3.1.4 Ejemplos</a></li>
+<li><a href="#315-limitaciones">3.1.5 Limitaciones</a></li>
+</ul>
+</li>
+<li><a href="#32-l%C3%B3gica-de-predicados">3.2 Lógica de predicados</a>
+<ul>
+<li><a href="#321-funcionamiento">3.2.1 Funcionamiento</a></li>
+<li><a href="#322-cuantificadores">3.2.2 Cuantificadores.</a>
+<ul>
+<li><a href="#3221-universal-forall">3.2.2.1 Universal ($\forall$).</a></li>
+<li><a href="#3221-existencial-exists">3.2.2.1 Existencial ($\exists$).</a></li>
+</ul>
+</li>
+<li><a href="#323-combinaciones-y-ejemplos">3.2.3. Combinaciones y ejemplos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-m%C3%A9todos-de-demostraci%C3%B3n">4. Métodos de demostración</a>
+<ul>
+<li><a href="#41-tablas-de-verdad">4.1 Tablas de verdad</a>
+<ul>
+<li><a href="#411-funcionamiento">4.1.1 Funcionamiento</a></li>
+<li><a href="#412-ejemplos">4.1.2 Ejemplos</a></li>
+<li><a href="#413-consideraciones">4.1.3 Consideraciones</a></li>
+</ul>
+</li>
+<li><a href="#42-interpretaciones">4.2 Interpretaciones</a>
+<ul>
+<li><a href="#421-funcionamiento">4.2.1 Funcionamiento</a></li>
+<li><a href="#422-m%C3%A9todo-directo">4.2.2 Método directo</a>
+<ul>
+<li><a href="#4221-funcionamiento">4.2.2.1 Funcionamiento</a></li>
+</ul>
+</li>
+<li><a href="#423-m%C3%A9todo-indirecto-refutaci%C3%B3n-o-contradicci%C3%B3n">4.2.3 Método indirecto (refutación o contradicción)</a>
+<ul>
+<li><a href="#4231-funcionamiento">4.2.3.1 Funcionamiento</a></li>
+</ul>
+</li>
+<li><a href="#424-ejemplo">4.2.4 Ejemplo</a></li>
+<li><a href="#425-consideraciones">4.2.5 Consideraciones</a></li>
+</ul>
+</li>
+<li><a href="#43-derivaciones">4.3 Derivaciones</a>
+<ul>
+<li><a href="#431-funcionamiento">4.3.1 Funcionamiento</a></li>
+<li><a href="#432-ejemplos">4.3.2 Ejemplos</a></li>
+<li><a href="#433-consideraciones">4.3.3 Consideraciones</a></li>
+</ul>
+</li>
+<li><a href="#44-tableux">4.4 Tableux</a>
+<ul>
+<li><a href="#441-funcionamiento">4.4.1 Funcionamiento</a></li>
+<li><a href="#442-ejemplos">4.4.2 Ejemplos</a></li>
+<li><a href="#443-consideraciones">4.4.3 Consideraciones</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-m%C3%A9todo-favorito">5. Método Favorito</a></li>
+<li><a href="#6-conclusi%C3%B3n">6. Conclusión</a></li>
+<li><a href="#7-bibliograf%C3%ADa">7. Bibliografía</a></li>
+<li><a href="#8-im%C3%A1genes">8. Imágenes</a>
+<ul>
+<li><a href="#frase-martes-11-de-marzo-del-2025">Frase (Martes 11 de marzo del 2025)</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="1-introducci%C3%B3n">1. Introducción</h1>
+<p>Para comprender las matemáticas, es fundamental entender qué constituye un argumento matemático válido, es decir, una demostración. La lógica matemática es la base de las demostraciones, ya que nos proporciona las reglas necesarias para evaluar la validez de los argumentos. No se centra en el contenido específico de un argumento, sino en su estructura formal, asegurando que la conclusión sea coherente con las premisas y que no haya errores en el razonamiento.</p>
+<p>En este ensayo, exploraremos la base de la demostración: la lógica. Primero, definiremos qué es una demostración. Luego, analizaremos la diferencia entre lógica proposicional y lógica de predicados, junto con sus propiedades y ejemplos. Finalmente, estudiaremos cuatro métodos de demostración: tablas de verdad, interpretaciones, derivaciones y tableaux.</p>
+<h1 id="2-%C2%BFqu%C3%A9-es-una-demostraci%C3%B3n">2. ¿Qué es una demostración?</h1>
+<p>Una demostración es un razonamiento lógico que establece la verdad de un enunciado matemático mediante una secuencia de pasos basados en reglas de la lógica y teoremas previos (Rosen, 2019). Su propósito es garantizar que cada paso sea válido, a la vez que hace una justificación exacta de por qué un resultado es cierto.</p>
+<p>Para ello, hacemos expresiones de manera precisa y sin ambigüedad, con proposiciones, las cuales son una afirmación con un único valor de verdad: verdadero o falso, por lo que no cae en la ambigüedad que el lenguaje usual que ocupamos tiene (Gómez Laveaga, 2019). Aquí es donde la lógica matemática juega un papel importante, pues proporciona herramientas para formular proposiciones y reglas para deducir conclusiones válidas, permitiéndonos determinar si un razonamiento es correcto. Así, el argumento lógico es una secuencia de premisas que conducen a una conclusión, donde se considera correcto si la verdad de sus premisas garantiza necesariamente la verdad de la conclusión.</p>
+<h1 id="3-%C2%BFcu%C3%A1l-es-la-diferencia-entre-l%C3%B3gica-proposicional-y-l%C3%B3gica-de-predicados">3. ¿Cuál es la diferencia entre lógica proposicional y lógica de predicados?</h1>
+<h2 id="31-l%C3%B3gica-proposicional">3.1 Lógica proposicional</h2>
+<p>Por un lado, la lógica proposicional se encarga de analizar enunciados que pueden ser verdaderos o falsos, sin considerar su estructura interna. Estos enunciados, llamados proposiciones, se combinan mediante operadores lógicos para formar expresiones más complejas, con las cuales podemos determinar si es correcto o no mediante reglas formales.</p>
+<h3 id="311-funcionamiento">3.1.1 Funcionamiento</h3>
+<p>Las proposiciones son expresiones o aﬁrmaciones, que tienen uno y sólo un valor de verdad asignado: verdadero (V) o falso (F). Generalmente usamos el lenguaje usual para enunciar las proposiciones, esto nos puede diﬁcultar la decisión de si un razonamiento es válido o no, debido a que las palabras pueden tener distintos signiﬁcados (Gómez Laveaga, 2019) Para ello, las evaluamos mediante operadores lógicos.</p>
+<h3 id="312-operadores-l%C3%B3gicos">3.1.2 Operadores lógicos</h3>
+<ul>
+<li>Negación ($\neg p$): Invierte el valor de verdad de la proposición. Si $p$ es verdadera, entonces $\neg p$ es falsa, y viceversa.</li>
+<li>Conjunción ($p \land q$): Representa &quot;$p$ y $q$&quot;. Es verdadera solo si ambas proposiciones son verdaderas.</li>
+<li>Disyunción ($p \lor q$): Representa &quot;$p$ o $q$&quot;. Es verdadera si al menos una de las proposiciones es verdadera.</li>
+<li>Implicación ($p \Longrightarrow q$): Expresa &quot;si $p$, entonces $q$&quot;. Es falsa solo cuando $p$ es verdadera y $q$ es falsa.</li>
+<li>Bicondicional ($p \iff q$): Indica &quot;$p$ si y solo si $q$&quot;. Es verdadera cuando $p$ y $q$ tienen el mismo valor de verdad.</li>
+</ul>
+<h3 id="313-propiedades-de-los-operadores">3.1.3 Propiedades de los operadores</h3>
+<ol>
+<li>Conmutatividad: El orden de los operandos no afecta el resultado. Por ejemplo, $ p \land q = q \land p $, pero la implicación ( p \to q ) no es conmutativa.</li>
+<li>Asociatividad: El agrupamiento de los operandos no afecta el resultado. Ejemplo: $(p \land q) \land r = p \land (q \land r) $, pero la implicación no es asociativa.</li>
+<li>Elemento Identidad: Un elemento que no cambia el resultado al operar con él.</li>
+<li>Elemento Neutro: Un elemento que, al operar con cualquier valor, siempre da como resultado el mismo elemento. E</li>
+<li>Idempotencia: Operar un valor consigo mismo no cambia el resultado. Ejemplo: $p \land p = p$ y $p \lor p = p$.</li>
+</ol>
+<p>Además, siguen una jearquía:</p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/precedencia.png" alt=""></p>
+<p>Imagen 0</p>
+<h3 id="314-ejemplos">3.1.4 Ejemplos</h3>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/proposicionesAtomicas.png" alt=""></p>
+<p>Imagen 1</p>
+<h3 id="315-limitaciones">3.1.5 Limitaciones</h3>
+<p>Debemos mencionar que en la lógica proposicional, solo trabajamos con proposiciones completas, como &quot;El cielo es azul&quot; o &quot;Está lloviendo&quot;, y las combinamos con operadores lógicos. Sin embargo, no podemos decir cosas como &quot;Todos los perros son mamíferos&quot; o &quot;Existe un número que es mayor que 5&quot; porque estas afirmaciones requieren hablar sobre individuos (perros, números) dentro de un conjunto más grande (todos los perros, todos los números). Para expresar este tipo de ideas, necesitamos la lógica de predicados.</p>
+<h2 id="32-l%C3%B3gica-de-predicados">3.2 Lógica de predicados</h2>
+<p>En lógica proposicional, las proposiciones son unidades atómicas que expresan enunciados completos, como por ejemplo &quot;Juan estudia&quot; (denotado como p), y que son lo único a lo que puede llegar a expresar, no tienen más significados más que uno sólo. Sin embargo, en lógica de predicados, podemos descomponer un enunciado en términos más específicos, utilizando predicados. Por ejemplo, podemos expresar la proposición &quot;Juan estudia&quot; como $E(Juan)$, donde $E(x)$ es un predicado que significa &quot;$x$ estudia&quot;.</p>
+<p>Además, en lógica de predicados podemos expresar relaciones entre objetos. Por ejemplo, si queremos decir &quot;Juan es amigo de Carlos&quot;, podemos escribirlo como $A(Juan,Sarah)$, donde $A(x,y)$ es un predicado que indica que &quot;x es amigo de $y$&quot;. De este modo, la lógica de predicados no solo nos permite hablar de propiedades de individuos, sino también de relaciones entre ellos.</p>
+<p>Asimismo, podemos hacer afirmaciones generales sobre un conjunto de elementos, como: $\forall x(P(x) \Longrightarrow A(x))$, donde $P(x)$ significa &quot;$x$ es una persona&quot; y $A(x)$ significa &quot;$x$ es alto&quot;.</p>
+<h3 id="321-funcionamiento">3.2.1 Funcionamiento</h3>
+<ul>
+<li>Predicado: Es una función que toma uno o más argumentos y devuelve un valor de verdad. El predicado ( P(x) ) es verdadero o falso dependiendo del valor de ( x ).</li>
+<li>Cuantificadores.</li>
+<li>Variables: Son símbolos que representan objetos en un dominio. Los cuantificadores se aplican sobre estas variables para crear proposiciones más generales.</li>
+</ul>
+<h3 id="322-cuantificadores">3.2.2 Cuantificadores.</h3>
+<p>Los cuantificadores son símbolos que indican cuántos elementos de un conjunto cumplen con una determinada propiedad.</p>
+<h4 id="3221-universal-forall">3.2.2.1 Universal ($\forall$).</h4>
+<p>Quiere decir &quot;para todo&quot; y expresa que una propiedad se cumple para todos los elementos de un dominio.</p>
+<ul>
+<li>Notación: $\forall x P(x)$</li>
+<li>Significado: &quot;Para todo $x$, se cumple $P(x)$&quot;.</li>
+<li>Ejemplo: Si $P(x)$ significa &quot;$x$ es un número par&quot;, entonces, $\forall x P(x)$ significa &quot;Todos los números en el dominio son pares&quot;.</li>
+<li>Forma negativa: $\neg (\forall xP(x)) \equiv \exists x \neg P(x)$ que se lee como &quot;Existe al menos un  x para el cual $P(x)$ no es cierto&quot;.</li>
+<li>Ejemplo: Si la afirmación original era &quot;Todos los gatos son blancos&quot;, su negación sería &quot;Existe al menos un gato que no es blanco&quot;.</li>
+</ul>
+<h4 id="3221-existencial-exists">3.2.2.1 Existencial ($\exists$).</h4>
+<p>Quiere decir &quot;Existe al menos uno&quot; e indica que existe al menos un elemento en el dominio que cumple con una propiedad dada.
+Notación: $\exists$xP(x)</p>
+<ul>
+<li>Significado: &quot;Existe al menos un $x$ tal que $P(x)$ es verdadero&quot;.</li>
+<li>Ejemplo: Si $P(x)$ significa &quot;$x$ es un número impar&quot;, entonces $\exists$xP(x) significa &quot;Existe al menos un número impar en el dominio&quot;.</li>
+<li>Forma negativa: $\neg (\exists xP(x)) \equiv  \forall x \neg P(x)$ que se lee como &quot;Para todo $x$, $P(x)$ no se cumple&quot;, es decir, &quot;Ningún $x$ cumple P(x)&quot;.</li>
+<li>Ejemplo: Si la afirmación original era &quot;Existe al menos un estudiante que aprobó&quot;, su negación sería &quot;Ningún estudiante aprobó&quot;.</li>
+</ul>
+<h3 id="323-combinaciones-y-ejemplos">3.2.3. Combinaciones y ejemplos</h3>
+<p>Podemos combinar cuantificadores para expresar ideas más complejas.</p>
+<ul>
+<li>
+<p>Ejemplo 1: &quot;No todas las aves en el parque pueden volar&quot;.</p>
+</li>
+<li>
+<p>$A(x)$: ser ave, $V(x)$: x puede volar, $En(x, y)$: x esta en y, $P(x)$: x es parque.</p>
+</li>
+<li>
+<p>$\exists x\exists y (A(x) \land   En(x, y) \land   P(y) \land   \neg V(x) \land   x \neq y)$ es &quot;Hay seres en algún parque que no son aves y pueden volar&quot;.</p>
+</li>
+<li>
+<p>Juicio negativo: $\neg(\forall x \forall y ((P(y) \land   \neg A(x) \land   En(x, y) \land   x \neq y) \Longrightarrow  \neg V(x)))$</p>
+</li>
+<li>
+<p>Ejemplo 2:  $P (x): x$ es cuervo, $F (x):x$ es inteligente.</p>
+</li>
+<li>
+<p>Juicio universal afirmativo: Todos los cuervos son inteligentes es $\forall  x (P (x) \Longrightarrow  F (x))$</p>
+</li>
+<li>
+<p>Juicio existencial afirmativo: Algunos cuervos son inteligentes es $\exists x (P (x) \land   F (x))$</p>
+</li>
+<li>
+<p>Juicio existencial negativo: Algunos cuervos no son inteligentes es $\forall  x (P (x) \land   \neg  F (x))$</p>
+</li>
+<li>
+<p>Juicio universal negativo: Ningun cuervo es inteligente es $ \forall  x (P (x) \Longrightarrow  \neg  F (x)), \neg  \exists x (P (x) \land   F (x))$</p>
+</li>
+</ul>
+<p>En resumen, la diferencia clave entre lógica proposicional y lógica de predicados es su capacidad para expresar relaciones y propiedades sobre objetos dentro de un conjunto. La lógica de predicados permite hablar de individuos específicos, propiedades generales y relaciones entre ellos, mientras que la lógica proposicional se limita a expresiones atómicas que no permiten este tipo de análisis más detallado.</p>
+<h1 id="4-m%C3%A9todos-de-demostraci%C3%B3n">4. Métodos de demostración</h1>
+<h2 id="41-tablas-de-verdad">4.1 Tablas de verdad</h2>
+<p>La tabla de verdad nos muestra todas las posibles combinaciones de valores de verdad (verdadero o falso) de las proposiciones que forman una expresión lógica.</p>
+<p>Esto nos permite clasificar a las fórmulas en: tautologías (se evalúan a verdadero en todos los estados posibles), contradicciones (se evalúan a falso en todos los posibles estados) o contingencias (no son ni tautologías ni contradicciones).</p>
+<h3 id="411-funcionamiento">4.1.1 Funcionamiento</h3>
+<p>Una tabla de verdad se construye de la siguiente manera:</p>
+<ol>
+<li>Listar las proposiciones: Comienza con las proposiciones simples de la expresión que estás analizando.</li>
+<li>Generar todas las combinaciones de valores de verdad: El número de combinaciones crece de la forma $2^n$.</li>
+<li>Evaluar cada valor.</li>
+</ol>
+<h3 id="412-ejemplos">4.1.2 Ejemplos</h3>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/negacion.png" alt=""></p>
+<p>Imagen 2: Tabla de verdad de la negación</p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/conjuncion.png" alt=""></p>
+<p>Imagen 3: Tabla de verdad de la conjunción</p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/disyuncion.png" alt=""></p>
+<p>Imagen 4: Tabla de verdad de la disyunción</p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/implicacion.png" alt=""></p>
+<p>Imagen 5: Tabla de verdad de la implicación</p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/bicondicional.png" alt=""></p>
+<p>Imagen 6: Tabla de verdad de la doble implicación</p>
+<h3 id="413-consideraciones">4.1.3 Consideraciones</h3>
+<p>Analizar la validez de un argumento mediante su tabla de verdad no es recomendable en el caso general, ya que el número de filas crece exponencialmente, $2^n$, según la cantidad de variables lógicas involucradas.</p>
+<h2 id="42-interpretaciones">4.2 Interpretaciones</h2>
+<p>El método de interpretaciones evalúa una fórmula lógica asignando valores de verdad a sus variables y verificando si la fórmula es verdadera en todos los casos posibles. Para asignar el estado, utilizamos una función que asocia a cada variable proposicional un valor de verdad,  y como hay $n$ variables, el número total de posibles asignaciones es $2^n$.</p>
+<p>Debemos tomar en cuenta que para hacer la asignación, utilizamos las reglas de evaluación para los operadores lógicos: la negación ($\neg$), la disyunción ($\lor$), la conjunción ($\land$), la implicación ($\Longrightarrow$) y la bicondicional ($\Leftrightarrow$). Estas reglas permiten determinar cuándo una fórmula es satisfacible en una interpretación específica, lo que significa que existe al menos una asignación en la que la fórmula es verdadera.</p>
+<h3 id="421-funcionamiento">4.2.1 Funcionamiento</h3>
+<ol>
+<li>
+<p>Definimos un conjunto de variables proposicionales.</p>
+</li>
+<li>
+<p>Damos una interpretación $I$.</p>
+</li>
+<li>
+<p>Aplicamos formulas:
+<img src="/home/valeria/Documentos/EstructurasDiscretas/formulasInterpretaciones.png" alt=""></p>
+<p>Imagen 7: Material dado por el Ayudante de Teoría</p>
+</li>
+<li>
+<p>Una vez asignados los valores a las variables, se sigue evaluando la fórmula siguiendo las reglas lógicas. Si la fórmula es verdadera para todas las posibles interpretaciones, se dice que es una tautología.</p>
+</li>
+</ol>
+<p>Dado esto, hay dos métodos principales para demostrar la validez de un argumento:</p>
+<h3 id="422-m%C3%A9todo-directo">4.2.2 Método directo</h3>
+<p>Con este método queremos demostrar que una fórmula es válida (tautología) o que un argumento es correcto verificando que la conclusión es verdadera en todas las interpretaciones donde las premisas son verdaderas.</p>
+<h4 id="4221-funcionamiento">4.2.2.1 Funcionamiento</h4>
+<ol>
+<li>Asignamos valores de verdad a las variables proposicionales según un estado.</li>
+<li>Forzar valores en las premisas (si es necesario) para que sean verdaderas.</li>
+<li>Calcular el valor de la conclusión bajo la misma interpretación.
+<ul>
+<li>Si en todos los casos donde las premisas son verdaderas $I(premisas) = 1$ la conclusión también lo es $I(conclusión) = 1$, el argumento es correcto</li>
+<li>Si existe al menos un caso donde las premisas son verdaderas pero la conclusión es falsa, el argumento es incorrecto (y esa interpretación es un contraejemplo).</li>
+</ul>
+</li>
+</ol>
+<h3 id="423-m%C3%A9todo-indirecto-refutaci%C3%B3n-o-contradicci%C3%B3n">4.2.3 Método indirecto (refutación o contradicción)</h3>
+<p>Con este método queremos demostrar que una fórmula es insatisfacible (contradicción) o que un argumento es correcto suponiendo lo contrario y derivando una contradicción.</p>
+<h4 id="4231-funcionamiento">4.2.3.1 Funcionamiento</h4>
+<ol>
+<li>Suponer que el argumento es incorrecto: Las premisas son verdaderas $I(premisas)=1$ pero la conclusión es falsa $I(conclusión) = 0$.</li>
+<li>Forzar valores según esta suposición.</li>
+<li>Buscar una contradicción en los valores asignados.
+<ul>
+<li>Si se encuentra una contradicción (es decir, $ p = 1$ y $p = 0$), el argumento es correcto (la suposición inicial era falsa).</li>
+<li>Si no hay contradicción, el argumento es
+incorrecto y la interpretación es un contraejemplo.</li>
+</ul>
+</li>
+</ol>
+<h3 id="424-ejemplo">4.2.4 Ejemplo</h3>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/ejemploInterpretaciones.png" alt=""></p>
+<h3 id="425-consideraciones">4.2.5 Consideraciones</h3>
+<p>Forzar un valor a una fórmula significa que, con base en la interpretación y los valores previos de las variables o fórmulas, su valor es necesariamente 1 (verdadero) o 0 (falso).</p>
+<p>Por ejemplo, si sabemos que $I(p \Longrightarrow q)=1$ e $I(q)=0$, entonces $I(p)$ debe ser $0$. Esto se debe a que, si fuera $1$, la definición de la implicación haría que $I(p \Longrightarrow q)=0$, lo cual contradice la información dada.</p>
+<p>Si en el método indirecto no se encuentra una contradicción o en el método directo no se fuerza la conclusión a ser verdadera, el argumento es incorrecto. En este caso, la interpretación dada funcionará como un contraejemplo, ya que las premisas serán verdaderas, pero la conclusión falsa.</p>
+<h2 id="43-derivaciones">4.3 Derivaciones</h2>
+<p>El método de derivaciones se utiliza para demostrar la validez de un argumento, partiendo de las premisas y aplicando reglas de inferencia para llegar a la conclusión.</p>
+<h3 id="431-funcionamiento">4.3.1 Funcionamiento</h3>
+<ol>
+<li>
+<p>Premisas: Comienza con un conjunto de premisas que son las afirmaciones dadas, de las cuales se busca llegar a la conclusión.</p>
+</li>
+<li>
+<p>Aplicamos reglas de equivalencias lógicas se usan para reescribir las proposiciones en formas equivalentes, lo cual es útil para simplificar las expresiones o hacer más clara la deducción. Son las siguientes:</p>
+</li>
+</ol>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/reglasInferencia1.png" alt=""></p>
+<p>Imagen 8</p>
+<ol start="3">
+<li>Queremos obtener una proposición que sea la conclusión que se deseaba probar, demostrando que es válida a partir de las premisas dadas.</li>
+</ol>
+<h3 id="432-ejemplos">4.3.2 Ejemplos</h3>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/derivacionEjemplo.png" alt=""></p>
+<p>Imagen 9</p>
+<h3 id="433-consideraciones">4.3.3 Consideraciones</h3>
+<p>Como podemos ver, cada paso en el proceso de derivación está basado en reglas y leyes lógicas bien definidas, lo que garantiza la validez de la conclusión si las premisas son correctas, por lo que hay que tener cuidado al aplicarlas, en especial porque se pueden combinar diferentes tipos de reglas de inferencia y equivalencias lógicas para manejar argumentos complejos.</p>
+<h2 id="44-tableux">4.4 Tableux</h2>
+<p>El método de Tableaux se utiliza para la lógica de predicados y lógica proposicional, para verificar la validez de un argumento o la satisfacibilidad de una proposición.</p>
+<h3 id="441-funcionamiento">4.4.1 Funcionamiento</h3>
+<p>El primer paso consiste en tomar la fórmula para la que se desea construir el tableau y colocarla como la raíz del árbol. A partir de ahí, el proceso sigue una serie de pasos específicos dependiendo del tipo de operador que aparece en la fórmula.</p>
+<p>Para ello nos guiamos de las siguientes reglas:</p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/reglasAlfaBeta.png" alt=""></p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/reglasO.png" alt=""></p>
+<p>Mientras vamos desarrollando, debemos procurar abrir el menor número de ramas posibles y siempre tratar de cerrar lo antes posible una rama. Para ello, primero podemos descomponer las fórmulas que no abran ramas (usar las $\alpha$-reglas y las $\sigma$-reglas antes que las $\beta$-reglas), luego, descomponemos las fórmulas que cierren ramas.</p>
+<p>Cabe mencionar, que cuando trabajamos con conjunciones, podemos encontrar una contradicción dentro de una rama si tienes una proposición atómica (como $p$) y su negación (como $\neg ¬p$) en la misma rama. Si esto ocurre, esa rama se cierra porque una proposición y su negación no pueden ser verdaderas al mismo tiempo.</p>
+<p>Para determinar si una fórmula es una tautología, usamos la reducción al absurdo:</p>
+<ol>
+<li>Negamos la fórmula.</li>
+<li>Construimos a partir de ella el tableaux.</li>
+<li>Tenemos dos opciones:
+<ul>
+<li>Si todas las ramas se cierran, significa que la negación de la fórmula es contradictoria, lo que implica que la fórmula original es siempre verdadera (es una tautología). Esto es porque la negación de una tautología siempre es una contradicción, y al cerrarse todas las ramas del tableaux, demostramos que no hay interpretación posible que haga que la fórmula negada sea verdadera.</li>
+<li>Si al menos una rama queda abierta, la negación es satisfacible, lo que significa que la fórmula original no es una tautología.</li>
+</ul>
+</li>
+</ol>
+<p>De otra manera, podemos no negar y procedemos de la siguiente manera:</p>
+<ol>
+<li>Construimos a partir de la fórmula original el tableaux.</li>
+<li>Tenemos tres opciones:
+<ul>
+<li>Si todas las ramas quedan abiertas, significa que la fórmula es insatisfacible, lo cual es incorrecto en la mayoría de los casos cuando queremos verificar tautologías</li>
+<li>Si algunas ramas se cierran y otras quedan abiertas, significa que la fórmula es simplemente satisfacible (es verdadera en algunos casos pero no en todos, por lo que no es tautología).</li>
+<li>Si todas las ramas se cierran, significa que la fórmula es una contradicción (nunca es verdadera).</li>
+</ul>
+</li>
+</ol>
+<h3 id="442-ejemplos">4.4.2 Ejemplos</h3>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/ejemploTableaux.png" alt=""></p>
+<p>Imagen 10</p>
+<p><img src="/home/valeria/Documentos/EstructurasDiscretas/ejemploTableaux2.png" alt=""></p>
+<p>Imagen 11</p>
+<h3 id="443-consideraciones">4.4.3 Consideraciones</h3>
+<p>De acuerdo a Miranda y Viso Gurovich (2016), las fórmulas representadas en un tableau deben estar conformadas por conjunciones y disyunciones o constantes. Estas últimas son fórmulas atómicas, como los valores de verdad (true, false) o las proposiciones ($p, q, r$), y sus negaciones. Es importante destacar que, aunque en un inicio algunas fórmulas pueden contener operadores más complejos como la implicación o la bicondicional, no es necesario preocuparse, ya que las podemos simplificar en disyunciones y conjunciones. Además, la negación de una fórmula disyuntiva o conjuntiva se puede eliminar utilizando las leyes de De Morgan, lo que permite transformar las expresiones y trabajar con una forma más sencilla.</p>
+<p>Algo importante, es que debemos mantener la asociatividad de los operadores. Esto significa que se debe respetar la precedencia original de los operadores, asegurando que todos los paréntesis que indican esta precedencia sean explícitos en las fórmulas.</p>
+<h1 id="5-m%C3%A9todo-favorito">5. Método Favorito</h1>
+<p>Personalmente, a pesar de que en un inicio no lo comprendía, prefiero el método de tableaux porque es una representación visual que estructura el problema. Al construir el árbol, el razonamiento se sigue paso a paso, lo que facilita entender cómo se llega a la conclusión. Es como seguir un camino directo, ya que en las ramas podemos ver rápidamente si no se tratará de una tautología, porque faltan variables para cerrar las ramas, o bien, se dejan abiertas según el caso. Considero este método más visual y organizado.</p>
+<h1 id="6-conclusi%C3%B3n">6. Conclusión</h1>
+<p>La lógica matemática no solo es la base de muchas ramas teóricas de la computación, sino que también tiene aplicaciones prácticas fundamentales, como su uso para las compuertas lógicas y su construcción, pero sobre todo en las demostraciones, cosa con la que trabajamos diaro, y es fundamental.</p>
+<h1 id="7-bibliograf%C3%ADa">7. Bibliografía</h1>
+<ol>
+<li>Gómez Laveaga, C. (2019). &quot;Álgebra Superior: Curso completo&quot; (1.a ed.). Facultad de Ciencias.</li>
+<li>Miranda, F. E., &amp; Viso Gurovich, E. (2016). &quot;Matemáticas Discretas&quot; (2.a ed.). Las Prensas de Ciencias.</li>
+<li>Rosen, K. H. (2019). &quot;Discrete Mathematics and its applications&quot; (8.a ed.). McGraw-Hill.</li>
+</ol>
+<h1 id="8-im%C3%A1genes">8. Imágenes</h1>
+<p>Imagen 0, 1, 2, 3, 4, 5, 6, 9, 10, 11: Miranda, F. E., &amp; Viso Gurovich, E. (2016). &quot;Matemáticas Discretas&quot; (2.a ed.). Las Prensas de Ciencias.</p>
+<p>Imagen 7: Material dado por el Ayudante de Teoría</p>
+<p>Imagen 8: Rosen, K. H. (2019). &quot;Discrete Mathematics and its applications&quot; (8.a ed.). McGraw-Hill.</p>
+<h3 id="frase-martes-11-de-marzo-del-2025">Frase (Martes 11 de marzo del 2025)</h3>
+<blockquote>
+<p>Your life isn’t yours if you always care what others think.</p>
+</blockquote>
+
+</body>
+</html>
